@@ -1,21 +1,14 @@
 const Nudge = require('../models/Nudge');
-
-// Controller function to handle creating a new Nudge
 exports.createNudge = async (req, res) => {
   try {
-    // Log received data for debugging purposes
+   
     console.log("Received Nudge Data:", req.body);
-
-    // Create a new Nudge instance using the request body
     const newNudge = new Nudge(req.body);
-
-    // Save the Nudge to the database
     const savedNudge = await newNudge.save();
 
-    // Send back a success response with the saved nudge data
     res.status(201).json(savedNudge);
   } catch (error) {
-    // Log and send back an error if something goes wrong
+   
     console.error("Error creating nudge:", error);
     res.status(500).json({ error: "Failed to create nudge" });
   }
